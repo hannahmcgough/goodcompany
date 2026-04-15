@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Company — Know What You're Really Buying</title>
+<meta name="description" content="Scan any product. Get the full picture — ingredients, sourcing, brand ethics, and more. Instantly.">
+<meta name="author" content="Hannah McGough, Dr. Zack Dvornicky-Raymond">
+<meta name="robots" content="index, follow">
+<meta property="og:url" content="https://goodco.app/">
+<meta property="og:title" content="Good Company — Know What You're Really Buying">
+<meta property="og:description" content="Scan any product. Get the full picture instantly.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://goodco.app/">
+<link rel="canonical" href="https://goodco.app/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* Softened sky blue palette */
+  --sky:        #E2EFF7;
+  --sky-mid:    #EAF3F9;
+  --sky-light:  #F2F8FC;
+  --sky-card:   #FAF7F2;
+
+  /* Warm slate navy — authoritative but approachable */
+  --navy:       #1E3A52;
+  --navy-mid:   #2C4A6A;
+  --navy-light: #3A5E80;
+
+  /* Text */
+  --text:       #1E3040;
+  --text-mid:   #4A6E88;
+  --text-soft:  #85A8C0;
+
+  /* Borders — warmer */
+  --border:     rgba(44,74,106,0.09);
+  --border-mid: rgba(44,74,106,0.15);
+
+  /* Vibrant emerald green — the hero */
+  --green:      #00B96A;
+  --green-deep: #009A58;
+  --green-pale: #E6F9F1;
+  --green-dim:  rgba(0,185,106,0.12);
+  --green-glow: rgba(0,185,106,0.08);
+
+  /* Warm status */
+  --amber:      #C25E0A;
+  --amber-bg:   #FFF5EB;
+  --red:        #BA2020;
+  --red-bg:     #FDECEA;
+
+  --radius:    10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--sky);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 66px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  background: rgba(226,239,247,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+
+.logo-mark {
+  width: 36px; height: 36px;
+  background: var(--green);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: white; font-weight: 700;
+  box-shadow: 0 2px 10px rgba(0,185,106,0.28);
+}
+
+.logo-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px; font-weight: 400;
+  color: var(--text);
+}
+
+.nav-cta {
+  background: var(--navy); color: white;
+  border: none; border-radius: 6px;
+  padding: 10px 22px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--navy-mid); }
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--sky);
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 120px 24px 80px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 18% 62%, rgba(0,185,106,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 45% at 84% 22%, rgba(255,255,255,0.5) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--green-pale);
+  border: 1px solid rgba(0,185,106,0.22);
+  border-radius: 4px;
+  padding: 7px 16px;
+  font-size: 11px; font-weight: 600;
+  color: var(--green-deep);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 30px;
+  animation: up 0.6s ease both;
+}
+.eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(46px, 7vw, 84px);
+  font-weight: 400; line-height: 1.07;
+  letter-spacing: -1px;
+  color: var(--text);
+  max-width: 860px; margin-bottom: 22px;
+  animation: up 0.6s ease 0.1s both;
+}
+
+h1 em { font-style: italic; color: var(--green); }
+
+.hero-sub {
+  font-size: clamp(17px, 2vw, 20px);
+  color: var(--text-mid); font-weight: 400;
+  max-width: 500px; margin-bottom: 44px;
+  animation: up 0.6s ease 0.2s both;
+}
+
+.hero-actions {
+  display: flex; gap: 12px;
+  align-items: center; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 80px;
+  animation: up 0.6s ease 0.3s both;
+}
+
+.btn-main {
+  background: var(--green); color: white;
+  border: none; border-radius: 6px;
+  padding: 15px 30px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(0,185,106,0.28);
+}
+.btn-main:hover { background: var(--green-deep); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,185,106,0.32); }
+
+.btn-out {
+  background: white; color: var(--text-mid);
+  border: 1px solid var(--border-mid);
+  border-radius: 6px; padding: 15px 30px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 500;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-out:hover { border-color: var(--navy); color: var(--text); }
+
+/* ─── PHONE ─── */
+.phone-wrap { animation: up 0.8s ease 0.4s both; }
+
+.phone {
+  width: 288px;
+  background: white;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border-mid);
+  box-shadow:
+    0 40px 88px rgba(13,33,55,0.16),
+    0 8px 24px rgba(13,33,55,0.09),
+    0 0 0 1px rgba(255,255,255,0.6);
+  margin: 0 auto;
+}
+
+.phone-top {
+  background: var(--navy);
+  height: 32px;
+  display: flex; align-items: center; justify-content: center;
+}
+.phone-pill { width: 60px; height: 5px; background: rgba(255,255,255,0.14); border-radius: 50px; }
+
+.phone-body { padding: 14px; background: var(--sky-card); }
+
+.ph-search {
+  background: white; border: 1px solid var(--border);
+  border-radius: 9px; padding: 10px 12px;
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 11px;
+  box-shadow: 0 1px 4px rgba(13,33,55,0.06);
+}
+.ph-search span { font-size: 12px; color: var(--text-soft); font-weight: 400; }
+
+.ph-scan {
+  margin-left: auto; width: 28px; height: 28px;
+  background: var(--green); border-radius: 7px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0,185,106,0.3);
+}
+
+.ph-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 13px; margin-bottom: 9px;
+  box-shadow: 0 2px 8px rgba(13,33,55,0.07);
+}
+
+.ph-top { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+
+.ph-ico {
+  width: 38px; height: 38px; background: var(--green-pale);
+  border-radius: 9px; display: flex; align-items: center;
+  justify-content: center; font-size: 17px; flex-shrink: 0;
+}
+
+.ph-name { font-size: 11px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.ph-meta { font-size: 10px; color: var(--text-soft); font-weight: 400; }
+
+.ph-grade {
+  margin-left: auto; width: 38px; height: 38px;
+  border-radius: 9px; display: flex; align-items: center;
+  justify-content: center; font-size: 15px; font-weight: 700;
+  flex-shrink: 0; font-family: 'Instrument Serif', serif;
+}
+.g-warn { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(194,94,10,0.2); }
+.g-bad  { background: var(--red-bg);   color: var(--red);   border: 1px solid rgba(186,32,32,0.2); }
+
+.bars { display: flex; flex-direction: column; gap: 6px; }
+.bar-row { display: flex; align-items: center; gap: 7px; }
+.bar-lbl { font-size: 10px; color: var(--text-soft); font-weight: 500; width: 82px; flex-shrink: 0; }
+.bar-trk { flex: 1; height: 5px; background: var(--sky); border-radius: 50px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 50px; }
+.f-g { background: var(--green); }
+.f-a { background: #D07020; }
+.f-r { background: #C03030; }
+.bar-grd { font-size: 10px; font-weight: 700; width: 12px; text-align: right; flex-shrink: 0; }
+.c-g { color: var(--green-deep); } .c-a { color: var(--amber); } .c-r { color: var(--red); }
+
+.ph-alert {
+  background: var(--red-bg); border: 1px solid rgba(186,32,32,0.18);
+  border-radius: 9px; padding: 9px 11px;
+  display: flex; align-items: center; gap: 7px; margin-bottom: 9px;
+}
+.ph-at { font-size: 10px; font-weight: 700; color: var(--red); }
+.ph-as { font-size: 9px; color: #A03030; font-weight: 400; }
+
+.ph-gran {
+  background: var(--sky-card); border: 1px solid var(--border);
+  border-radius: 9px; padding: 9px 11px;
+  display: flex; align-items: center; gap: 9px;
+}
+
+/* ─── SHARED ─── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+section { position: relative; }
+
+.sec-tag {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.tag-green { color: var(--green-deep); }
+.tag-dim   { color: rgba(255,255,255,0.42); }
+
+.sec-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(30px, 4.5vw, 50px);
+  font-weight: 400; line-height: 1.16;
+  letter-spacing: -0.5px; margin-bottom: 56px;
+}
+.title-dk { color: var(--text); }
+.title-lt { color: white; }
+
+/* ─── HOW ─── */
+.s-how { background: var(--sky-card); padding: 96px 0; border-top: 1px solid var(--border); }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+.step {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 30px 24px; transition: all 0.2s;
+}
+.step:hover { border-color: rgba(0,185,106,0.28); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,185,106,0.1); }
+
+.step-n {
+  width: 34px; height: 34px; background: var(--green-dim);
+  border-radius: 6px; display: flex; align-items: center;
+  justify-content: center; font-size: 14px; font-weight: 700;
+  color: var(--green-deep); margin-bottom: 18px;
+}
+.step-ico { font-size: 28px; margin-bottom: 13px; }
+.step-title { font-family: 'Instrument Serif', serif; font-size: 20px; font-weight: 400; margin-bottom: 10px; color: var(--text); }
+.step-desc  { font-size: 14px; color: var(--text-mid); font-weight: 400; line-height: 1.65; }
+
+/* ─── CATEGORIES ─── */
+.s-cat { background: white; padding: 96px 0; border-top: 1px solid var(--border); }
+
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(198px, 1fr)); gap: 10px; }
+
+.cat {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 14px;
+  display: flex; align-items: flex-start; gap: 12px; transition: all 0.2s;
+}
+.cat:hover { border-color: rgba(0,185,106,0.25); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,185,106,0.09); }
+
+.cat-ico {
+  width: 38px; height: 38px; background: var(--sky-card);
+  border-radius: 8px; display: flex; align-items: center;
+  justify-content: center; font-size: 18px; flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.cat-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.cat-desc { font-size: 11px; color: var(--text-soft); font-weight: 400; line-height: 1.4; }
+
+/* ─── WHY ─── */
+.s-why { background: var(--sky-card); padding: 96px 0; border-top: 1px solid var(--border); }
+
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+.why-q {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 400; font-style: italic;
+  line-height: 1.55; color: var(--text); margin-bottom: 28px;
+}
+
+.founder-row { display: flex; align-items: center; gap: 13px; }
+
+.f-av {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--navy); color: #8CC8E8;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600;
+}
+.f-nm { font-size: 14px; font-weight: 600; color: var(--text); }
+.f-ti { font-size: 12px; color: var(--text-mid); font-weight: 400; margin-top: 2px; }
+
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+
+.stat {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 22px;
+}
+.stat-n {
+  font-family: 'Instrument Serif', serif;
+  font-size: 40px; font-weight: 400;
+  color: var(--green); line-height: 1;
+  margin-bottom: 8px; letter-spacing: -0.5px;
+}
+.stat-l { font-size: 13px; color: var(--text-mid); font-weight: 400; line-height: 1.5; }
+
+/* ─── COMPARISON ─── */
+.s-cmp { background: var(--navy); padding: 96px 0; }
+
+.cmp { width: 100%; border-collapse: collapse; font-size: 14px; }
+.cmp th {
+  text-align: left; padding: 13px 15px;
+  font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.32); border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.cmp th.gc { color: var(--green); background: rgba(0,185,106,0.09); border-radius: 8px 8px 0 0; }
+.cmp td { padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,0.44); font-weight: 400; }
+.cmp td:first-child { color: rgba(255,255,255,0.85); font-weight: 500; }
+.cmp td.gc { background: rgba(0,185,106,0.06); }
+.cmp td.y { color: var(--green); font-weight: 700; font-size: 16px; text-align: center; }
+.cmp td.n { color: rgba(255,255,255,0.17); text-align: center; font-size: 18px; }
+.cmp tr:last-child td { border-bottom: none; }
+
+/* ─── CTA ─── */
+.s-cta { background: var(--sky); padding: 96px 0; border-top: 1px solid var(--border); }
+
+.cta-box {
+  background: var(--navy); border-radius: var(--radius-xl);
+  padding: 72px 56px; text-align: center;
+  position: relative; overflow: hidden;
+  box-shadow: 0 24px 64px rgba(13,33,55,0.18);
+}
+
+.cta-glow {
+  position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+  width: 480px; height: 280px;
+  background: radial-gradient(ellipse, rgba(0,185,106,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-ring {
+  position: absolute; top: -100px; right: -100px;
+  width: 320px; height: 320px;
+  border: 48px solid rgba(255,255,255,0.03);
+  border-radius: 50%; pointer-events: none;
+}
+
+.cta-box h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(30px, 4.5vw, 52px);
+  font-weight: 400; color: white;
+  margin-bottom: 14px; letter-spacing: -0.3px;
+  line-height: 1.12; position: relative;
+}
+
+.cta-box p {
+  color: rgba(255,255,255,0.58); font-size: 17px;
+  font-weight: 400; margin-bottom: 36px; position: relative;
+}
+
+.email-form { display: flex; gap: 10px; max-width: 430px; margin: 0 auto; position: relative; }
+
+.email-in {
+  flex: 1; background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 6px; padding: 15px 20px;
+  font-size: 15px; font-family: 'DM Sans', sans-serif;
+  color: white; outline: none; transition: border-color 0.2s;
+}
+.email-in::placeholder { color: rgba(255,255,255,0.3); }
+.email-in:focus { border-color: rgba(0,185,106,0.5); }
+
+.submit-btn {
+  background: var(--green); color: white;
+  border: none; border-radius: 6px;
+  padding: 15px 24px; font-size: 14px; font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer; white-space: nowrap; transition: background 0.2s;
+  box-shadow: 0 4px 14px rgba(0,185,106,0.32);
+}
+.submit-btn:hover { background: var(--green-deep); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 30px 48px;
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 14px;
+}
+.fl { display: flex; align-items: center; gap: 10px; }
+.fl-mk {
+  width: 30px; height: 30px; background: var(--green);
+  border-radius: 7px; display: flex; align-items: center;
+  justify-content: center; font-size: 14px; color: white; font-weight: 700;
+}
+.fl-nm { font-family: 'Instrument Serif', serif; font-size: 16px; font-weight: 400; color: white; }
+.fc { font-size: 10px; color: rgba(255,255,255,0.24); font-weight: 400; line-height: 1.7; text-align: right; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .container { padding: 0 20px; }
+  .steps { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; gap: 44px; }
+  .cta-box { padding: 44px 24px; }
+  .email-form { flex-direction: column; }
+  footer { flex-direction: column; }
+  .fc { text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark">✓</div>
+    <span class="logo-name">Good Company</span>
+  </a>
+  <button class="nav-cta" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Get Early Access</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow"><div class="eyebrow-dot"></div>In development — join the waitlist</div>
+
+  <h1>Finally know what's <em>really</em><br>in what you buy.</h1>
+
+  <p class="hero-sub">Scan any product. Get the full picture — ingredients, sourcing, brand ethics, and more. In seconds, not hours.</p>
+
+  <div class="hero-actions">
+    <button class="btn-main" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">Join the Waitlist</button>
+    <button class="btn-out" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See how it works ↓</button>
+  </div>
+
+  <!-- PHONE -->
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="phone-top"><div class="phone-pill"></div></div>
+      <div class="phone-body">
+
+        <div class="ph-search">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7599B0" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <span>Search or scan a product...</span>
+          <div class="ph-scan">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </div>
+        </div>
+
+        <div class="ph-card">
+          <div class="ph-top">
+            <div class="ph-ico">🧴</div>
+            <div>
+              <div class="ph-name">Vitamin C Face Serum</div>
+              <div class="ph-meta">Brand X · Beauty · $28</div>
+            </div>
+            <div class="ph-grade g-warn">C+</div>
+          </div>
+          <div class="bars">
+            <div class="bar-row"><span class="bar-lbl">🧴 Safety</span><div class="bar-trk"><div class="bar-fill f-g" style="width:82%"></div></div><span class="bar-grd c-g">A</span></div>
+            <div class="bar-row"><span class="bar-lbl">💧 Transparency</span><div class="bar-trk"><div class="bar-fill f-a" style="width:50%"></div></div><span class="bar-grd c-a">C</span></div>
+            <div class="bar-row"><span class="bar-lbl">⚖️ Claims</span><div class="bar-trk"><div class="bar-fill f-r" style="width:28%"></div></div><span class="bar-grd c-r">D</span></div>
+            <div class="bar-row"><span class="bar-lbl">🌿 Sustainability</span><div class="bar-trk"><div class="bar-fill f-g" style="width:68%"></div></div><span class="bar-grd c-g">B</span></div>
+            <div class="bar-row"><span class="bar-lbl">🏅 Certifications</span><div class="bar-trk"><div class="bar-fill f-r" style="width:15%"></div></div><span class="bar-grd c-r">F</span></div>
+          </div>
+        </div>
+
+        <div class="ph-alert">
+          <span style="font-size:13px;">⚠️</span>
+          <div>
+            <div class="ph-at">FTC Warning on File · 2023</div>
+            <div class="ph-as">Misleading "clean" labeling claims</div>
+          </div>
+        </div>
+
+        <div class="ph-gran">
+          <span style="font-size:15px;">🥣</span>
+          <div style="flex:1">
+            <div style="font-size:10px;font-weight:600;color:var(--text);">Nature's Harvest Granola</div>
+            <div style="font-size:9px;color:var(--text-soft);font-weight:400;">CPG · $6.99</div>
+          </div>
+          <div class="ph-grade g-bad" style="width:34px;height:34px;font-size:13px;border-radius:7px;">D+</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="s-how" id="how">
+  <div class="container">
+    <p class="sec-tag tag-green fade-in">How it works</p>
+    <h2 class="sec-title title-dk fade-in">Three steps.<br>Total confidence.</h2>
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-ico">🔍</div>
+        <div class="step-n">1</div>
+        <div class="step-title">Search, scan, or snap</div>
+        <p class="step-desc">Type a product name, scan the barcode, or upload a photo. No account required. No app to download.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-ico">🧠</div>
+        <div class="step-n">2</div>
+        <div class="step-title">We do the research</div>
+        <p class="step-desc">Good Company aggregates data from FDA, FTC, EWG, Glassdoor, and more — every source you'd never have time to check yourself.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-ico">✅</div>
+        <div class="step-n">3</div>
+        <div class="step-title">You decide what matters</div>
+        <p class="step-desc">We don't tell you what to buy. We give you what brands won't — and let you shop based on what you actually care about.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="s-cat">
+  <div class="container">
+    <p class="sec-tag tag-green fade-in">13 categories scored</p>
+    <h2 class="sec-title title-dk fade-in">Everything brands know about themselves.<br>Now available to you.</h2>
+    <div class="cat-grid">
+      <div class="cat fade-in"><div class="cat-ico">🧴</div><div><div class="cat-name">Product Safety</div><div class="cat-desc">Toxicity, allergens & irritants</div></div></div>
+      <div class="cat fade-in"><div class="cat-ico">💧</div><div><div class="cat-name">Ingredient Transparency</div><div class="cat-desc">Full labeling & honesty</div></div></div>
+      <div class="cat fade-in"><div class="cat-ico">⚖️</div><div><div class="cat-name">Claims Accuracy</div><div class="cat-desc">Clean, organic & "natural" claims</div></div></div>
+      <div class="cat fade-in"><div class="cat-ico">⭐</div><div><div class="cat-name">Consumer Reviews</div><div class="cat-desc">Aggregated real feedback</div></div></div>
+      <div class="cat fade-in"><div class="cat-ico">💲</div><div><div class="cat-name">Price & Best Deal</div><div class="cat-desc">Best price across retailers</div></div></div>
+      <div class="cat fade-in"><div class="cat-ico">🏅</div><div><div class="cat-name">Certifications</div><div class="cat-desc">B Corp, Leaping Bunny & more</div></div></div>
+      <div class="cat fade-in"><div class="cat-ico">👤</div><div><div class="cat-name">Founder Transparency</div><div class="cat-desc">Identity, mission & history</div></div></div>
+      <div class="cat fade-in"><div class="cat-ico">🧩</div><div><div class="cat-name">Board & Ownership</div><div class="cat-desc">Investors & brand direction</div></div></div>
+      <div class="cat fade-in"><div class="cat-ico">💼</div><div><div class="cat-name">Employee Ethics</div><div class="cat-desc">Pay transparency & culture</div></div></div>
+      <div class="cat fade-in"><div class="cat-ico">🌎</div><div><div class="cat-name">Supply Chain</div><div class="cat-desc">Where & how it's made</div></div></div>
+      <div class="cat fade-in"><div class="cat-ico">🌿</div><div><div class="cat-name">Sustainability</div><div class="cat-desc">Packaging, emissions & more</div></div></div>
+      <div class="cat fade-in"><div class="cat-ico">🙏</div><div><div class="cat-name">Charitable Impact</div><div class="cat-desc">% donated & cause partners</div></div></div>
+      <div class="cat fade-in"><div class="cat-ico">🚨</div><div><div class="cat-name">Legal Issues</div><div class="cat-desc">Lawsuits & FDA/FTC violations</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="s-why">
+  <div class="container">
+    <div class="why-grid">
+      <div class="fade-in">
+        <p class="sec-tag tag-green">Why we built this</p>
+        <p class="why-q">"I spent two hours in a grocery store photographing labels — and still couldn't figure out what I was buying. I shouldn't have needed to do that. Neither should you."</p>
+        <div class="founder-row">
+          <div class="f-av">HM</div>
+          <div>
+            <div class="f-nm">Hannah McGough</div>
+            <div class="f-ti">Co-Founder · Brand strategist, 10 years in consumer</div>
+          </div>
+        </div>
+      </div>
+      <div class="stat-grid fade-in">
+        <div class="stat"><div class="stat-n">30k+</div><div class="stat-l">New consumer products launched in the US every year</div></div>
+        <div class="stat"><div class="stat-n">73%</div><div class="stat-l">Of shoppers say they distrust brand marketing claims</div></div>
+        <div class="stat"><div class="stat-n">11min</div><div class="stat-l">Average time consumers spend researching a single purchase</div></div>
+        <div class="stat"><div class="stat-n">0</div><div class="stat-l">Neutral tools that surface all of this in one place. Until now.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="s-cmp">
+  <div class="container">
+    <p class="sec-tag tag-dim fade-in">Why other tools aren't enough</p>
+    <h2 class="sec-title title-lt fade-in">Other apps answer one question.<br>Good Company answers all of them.</h2>
+    <div style="overflow-x:auto;">
+      <table class="cmp fade-in">
+        <thead>
+          <tr>
+            <th>What you want to know</th>
+            <th class="gc">Good Company</th>
+            <th>EWG</th>
+            <th>Yuka</th>
+            <th>Think Dirty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Ingredient safety</td><td class="gc y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><td>Founder &amp; ownership</td><td class="gc y">✓</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+          <tr><td>Legal &amp; FTC violations</td><td class="gc y">✓</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+          <tr><td>Supply chain &amp; manufacturing</td><td class="gc y">✓</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+          <tr><td>Employee ethics &amp; pay</td><td class="gc y">✓</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+          <tr><td>Customizable by your values</td><td class="gc y">✓</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+          <tr><td>No app download required</td><td class="gc y">✓</td><td class="y">✓</td><td class="n">✗</td><td class="n">✗</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="s-cta" id="waitlist">
+  <div class="container">
+    <div class="cta-box fade-in">
+      <div class="cta-glow"></div>
+      <div class="cta-ring"></div>
+      <p class="sec-tag" style="color:rgba(255,255,255,0.4);margin-bottom:16px;">Early access</p>
+      <h2>Be first to know<br>when we launch.</h2>
+      <p>No spam. One email when Good Company is ready.</p>
+      <form class="email-form" action="https://formspree.io/f/xnjlqyql" method="POST" id="wl-form">
+        <input type="email" name="email" class="email-in" placeholder="your@email.com" required>
+        <button type="submit" class="submit-btn">Notify me →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fl">
+    <div class="fl-mk">✓</div>
+    <span class="fl-nm">Good Company</span>
+  </div>
+  <div class="fc">
+    © 2026 Hannah McGough & Dr. Zack Dvornicky-Raymond. All rights reserved.<br>
+    Concept & IP: Hannah McGough & Dr. Zack Dvornicky-Raymond · Copyright January 2026 · goodco.app
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(e => {
+  e.forEach(entry => {
+    if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), 60); obs.unobserve(entry.target); }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+['.steps', '.cat-grid', '.stat-grid'].forEach(s => {
+  document.querySelectorAll(`${s} .fade-in`).forEach((el, i) => { el.style.transitionDelay = `${i * 60}ms`; });
+});
+
+const form = document.getElementById('wl-form');
+if (form) {
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const inp = form.querySelector('.email-in'), btn = form.querySelector('.submit-btn');
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (res.ok) { inp.value = ''; inp.placeholder = "You're on the list ✓"; btn.textContent = 'Done!'; btn.style.background = '#009A58'; }
+    } catch { inp.value = ''; inp.placeholder = "You're on the list ✓"; btn.textContent = 'Done!'; }
+  });
+}
+</script>
+</body>
+</html>
